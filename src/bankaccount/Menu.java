@@ -67,7 +67,7 @@ public class Menu {
 		        System.exit(0);
 		    	break;
 		    default:
-		        System.out.println(Colors.TEXT_RED_BOLD + "\n[!] Invalid Option!\n" + Colors.TEXT_RESET);
+		        System.out.println(Colors.TEXT_RED_BOLD + "\nInvalid Option!\n" + Colors.TEXT_RESET);
 		        break;
 		    }
 		}
