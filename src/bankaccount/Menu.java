@@ -2,6 +2,7 @@ package bankaccount;
 
 import java.util.Scanner;
 
+import bankaccount.model.BankAccount;
 import bankaccount.util.Colors;
 
 public class Menu {
@@ -9,6 +10,14 @@ public class Menu {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int option;
+		
+		// BankAccount testing
+		BankAccount b1 = new BankAccount(1, 123, 1, "Andrea", 10000.0f);
+		b1.visualize();
+		b1.withdraw(12000.0f);
+		b1.visualize();
+		b1.deposit(5000.0f);
+		b1.visualize();
 		
 		while (true) {
 		    System.out.println(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND
@@ -74,11 +83,11 @@ public class Menu {
 	}
 	
 	public static void about() {
-		System.out.println("\n********************************************");
+		System.out.println("\n****************************************************************************************");
 		System.out.println("Project made by: ");
 		System.out.println("Fernanda Shinoda - fernanda.shinoda@hotmail.com - at Generation Bootcamp");
 		System.out.println("github.com/fshinoda");
-	    System.out.println("********************************************");
+	    System.out.println("****************************************************************************************");
 	}
 
 }
