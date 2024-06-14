@@ -2,7 +2,6 @@ package bankaccount;
 
 import java.util.Scanner;
 
-import bankaccount.model.BankAccount;
 import bankaccount.model.CheckingAccount;
 import bankaccount.model.SavingAccount;
 import bankaccount.util.Colors;
@@ -12,14 +11,6 @@ public class Menu {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int option;
-		
-		// BankAccount testing
-		BankAccount b1 = new BankAccount(1, 123, 1, "Andrea", 10000.0f);
-		b1.visualize();
-		b1.withdraw(12000.0f);
-		b1.visualize();
-		b1.deposit(5000.0f);
-		b1.visualize();
 		
 		// CheckingAccount testing
 		CheckingAccount ca1 = new CheckingAccount(1, 123, 1, "José da Silva", 0.0f, 1000.0f);
