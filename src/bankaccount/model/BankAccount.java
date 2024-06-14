@@ -88,6 +88,6 @@ public class BankAccount {
 		System.out.println("Agency: " + this.agency);
 		System.out.println("Account Type: " + type);
 		System.out.println("Owner: " + this.owner);
-		System.out.println("Balance: " + this.balance);
+		System.out.printf("Balance: %.2f\n", this.balance);
 	}
 }

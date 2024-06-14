@@ -3,6 +3,8 @@ package bankaccount;
 import java.util.Scanner;
 
 import bankaccount.model.BankAccount;
+import bankaccount.model.CheckingAccount;
+import bankaccount.model.SavingAccount;
 import bankaccount.util.Colors;
 
 public class Menu {
@@ -18,6 +20,22 @@ public class Menu {
 		b1.visualize();
 		b1.deposit(5000.0f);
 		b1.visualize();
+		
+		// CheckingAccount testing
+		CheckingAccount ca1 = new CheckingAccount(1, 123, 1, "José da Silva", 0.0f, 1000.0f);
+		ca1.visualize();
+		ca1.withdraw(12000.0f);
+		ca1.visualize();
+		ca1.deposit(5000.0f);
+		ca1.visualize();
+		
+        // SavingAccount testing
+		SavingAccount sa1 = new SavingAccount(2, 123, 2, "Maria dos Santos", 100000.0f, 15);
+		sa1.visualize();
+        sa1.withdraw(1000.0f);
+		sa1.visualize();
+		sa1.deposit(5000.0f);
+		sa1.visualize();
 		
 		while (true) {
 		    System.out.println(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND
