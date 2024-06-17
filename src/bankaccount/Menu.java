@@ -62,7 +62,7 @@ public class Menu {
 	            do {
 	                System.out.println("Type the account type (1-CA ou 2-SA): ");
 	                type = sc.nextInt();
-	            } while (type < 1 && type > 2);
+	            } while (type < 1|| type > 2);
 
 	            System.out.println("Type the account balance (R$): ");
 	            balance = sc.nextFloat();
