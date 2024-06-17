@@ -1,5 +1,7 @@
 package bankaccount;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import bankaccount.model.CheckingAccount;
@@ -51,32 +53,46 @@ public class Menu {
 		    System.out.println(" Type the desired option:                   ");
 		    System.out.println("                                                     " + Colors.TEXT_RESET);
 		    
-		    option = sc.nextInt();
+		    try {
+		    	option = sc.nextInt();		    	
+		    } catch(InputMismatchException e) {
+		    	System.out.println("\nType integer values!");
+		    	sc.nextLine();
+		    	option = 0;
+		    }
 		    
 		    switch (option) {
 		    case 1:
 		        System.out.println(Colors.TEXT_WHITE + "Create account\n\n");
+		        keyPress();
 		        break;
 		    case 2:
 		        System.out.println(Colors.TEXT_WHITE + "List all accounts\n\n");
+		        keyPress();
 		        break;
 		    case 3:
 		        System.out.println(Colors.TEXT_WHITE + "Consult account data by number\n\n");
+		        keyPress();
 		        break;
 		    case 4:
 		        System.out.println(Colors.TEXT_WHITE + "Update account data\n\n");
+		        keyPress();
 		        break;
 		    case 5:
 		        System.out.println(Colors.TEXT_WHITE + "Delete account\n\n");
+		        keyPress();
 		        break;
 		    case 6:
 		        System.out.println(Colors.TEXT_WHITE + "Withdrawal\n\n");
+		        keyPress();
 		        break;
 		    case 7:
 		        System.out.println(Colors.TEXT_WHITE + "Deposit\n\n");
+		        keyPress();
 		        break;
 		    case 8:
 		        System.out.println(Colors.TEXT_WHITE + "Transfer between accounts\n\n");
+		        keyPress();
 		        break;
 		    case 9:
 		    	System.out.println(Colors.TEXT_WHITE + "\nBrazil Bank - Your future is here!");
@@ -86,6 +102,7 @@ public class Menu {
 		    	break;
 		    default:
 		        System.out.println(Colors.TEXT_RED_BOLD + "\n[!]Invalid Option!\n" + Colors.TEXT_RESET);
+		        keyPress();
 		        break;
 		    }
 		}
@@ -97,6 +114,15 @@ public class Menu {
 		System.out.println("Fernanda Shinoda - fernanda.shinoda@hotmail.com - at Generation Bootcamp");
 		System.out.println("github.com/fshinoda");
 	    System.out.println("****************************************************************************************");
+	}
+	
+	public static void keyPress() {
+		try {
+			System.out.println(Colors.TEXT_RESET + "\n\nPress Enter to Continue...");
+			System.in.read();
+		} catch(IOException e) {
+			System.out.println("This is not the Enter Key >:(");
+		}
 	}
 
 }
