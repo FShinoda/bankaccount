@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import bankaccount.controller.BankAccountController;
 import bankaccount.model.CheckingAccount;
 import bankaccount.model.SavingAccount;
 import bankaccount.util.Colors;
@@ -11,24 +12,11 @@ import bankaccount.util.Colors;
 public class Menu {
 
 	public static void main(String[] args) {
+		BankAccountController account = new BankAccountController();
 		Scanner sc = new Scanner(System.in);
-		int option;
-		
-		// CheckingAccount testing
-		CheckingAccount ca1 = new CheckingAccount(1, 123, 1, "José da Silva", 0.0f, 1000.0f);
-		ca1.visualize();
-		ca1.withdraw(12000.0f);
-		ca1.visualize();
-		ca1.deposit(5000.0f);
-		ca1.visualize();
-		
-        // SavingAccount testing
-		SavingAccount sa1 = new SavingAccount(2, 123, 2, "Maria dos Santos", 100000.0f, 15);
-		sa1.visualize();
-        sa1.withdraw(1000.0f);
-		sa1.visualize();
-		sa1.deposit(5000.0f);
-		sa1.visualize();
+		int option, number, agency, type, aniversary;
+		String owner;
+		float balance, limit;
 		
 		while (true) {
 		    System.out.println(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND
@@ -64,10 +52,39 @@ public class Menu {
 		    switch (option) {
 		    case 1:
 		        System.out.println(Colors.TEXT_WHITE + "Create account\n\n");
+		        
+	            System.out.println("Type the agency number: ");
+	            agency = sc.nextInt();
+	            System.out.println("Type the account owner's name: ");
+	            sc.skip("\\R");
+	            owner = sc.nextLine();
+
+	            do {
+	                System.out.println("Type the account type (1-CA ou 2-SA): ");
+	                type = sc.nextInt();
+	            } while (type < 1 && type > 2);
+
+	            System.out.println("Type the account balance (R$): ");
+	            balance = sc.nextFloat();
+
+	            switch (type) {
+	                case 1 -> {
+	                    System.out.println("Type the credit limit (R$): ");
+	                    limit = sc.nextFloat();
+	                    account.register(new CheckingAccount(account.generateNumber(), agency, type, owner, balance, limit));
+	                }
+	                case 2 -> {
+	                    System.out.println("Type the account aniversary: ");
+	                    aniversary = sc.nextInt();
+	                    account.register(new SavingAccount(account.generateNumber(), agency, type, owner, balance, aniversary));
+	                }
+	            }
+		        
 		        keyPress();
 		        break;
 		    case 2:
 		        System.out.println(Colors.TEXT_WHITE + "List all accounts\n\n");
+		        account.listAll();
 		        keyPress();
 		        break;
 		    case 3:
