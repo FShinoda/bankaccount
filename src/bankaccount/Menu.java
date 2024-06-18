@@ -14,7 +14,7 @@ public class Menu {
 	public static void main(String[] args) {
 		BankAccountController account = new BankAccountController();
 		Scanner sc = new Scanner(System.in);
-		int option, number, agency, type, aniversary;
+		int option, number, agency, type, aniversary, numberToSearch;
 		String owner;
 		float balance, limit;
 		
@@ -48,8 +48,8 @@ public class Menu {
 		    	sc.nextLine();
 		    	option = 0;
 		    }
-		    
-		    switch (option) {
+
+			switch (option) {
 		    case 1:
 		        System.out.println(Colors.TEXT_WHITE + "Create account\n\n");
 		        
@@ -88,15 +88,61 @@ public class Menu {
 		        keyPress();
 		        break;
 		    case 3:
-		        System.out.println(Colors.TEXT_WHITE + "Consult account data by number\n\n");
+		        System.out.println(Colors.TEXT_WHITE + "Query account data by number\n\n");
+		        
+		        System.out.println("Type the account number: ");
+		        numberToSearch = sc.nextInt();
+		        
+		        account.searchByNumber(numberToSearch);
+		        
 		        keyPress();
 		        break;
 		    case 4:
 		        System.out.println(Colors.TEXT_WHITE + "Update account data\n\n");
+		        
+		        System.out.println("Type the account number: ");
+		        numberToSearch = sc.nextInt();
+		        
+		        var acc = account.searchInCollection(numberToSearch);
+		        
+		        if(acc != null) {
+		        	type = acc.getType();
+		        	
+		        	System.out.println("Type the agency number: ");
+		            agency = sc.nextInt();
+		            System.out.println("Type the account owner's name: ");
+		            sc.skip("\\R");
+		            owner = sc.nextLine();
+
+		            System.out.println("Type the account balance (R$): ");
+		            balance = sc.nextFloat();
+
+		            switch (type) {
+		                case 1 -> {
+		                    System.out.println("Type the credit limit (R$): ");
+		                    limit = sc.nextFloat();
+		                    account.update(new CheckingAccount(numberToSearch, agency, type, owner, balance, limit));
+		                }
+		                case 2 -> {
+		                    System.out.println("Type the account aniversary: ");
+		                    aniversary = sc.nextInt();
+		                    account.update(new SavingAccount(numberToSearch, agency, type, owner, balance, aniversary));
+		                }
+		            }
+		        } else {
+		        	System.out.println("\n Account not found.");
+		        }
+	
+		        
 		        keyPress();
 		        break;
 		    case 5:
 		        System.out.println(Colors.TEXT_WHITE + "Delete account\n\n");
+		        System.out.println("Type the account number: ");
+		        numberToSearch = sc.nextInt();
+		        
+		        account.delete(numberToSearch);
+		        
 		        keyPress();
 		        break;
 		    case 6:
