@@ -14,9 +14,9 @@ public class Menu {
 	public static void main(String[] args) {
 		BankAccountController account = new BankAccountController();
 		Scanner sc = new Scanner(System.in);
-		int option, number, agency, type, aniversary, numberToSearch;
+		int option, number, toNumber, agency, type, aniversary, numberToSearch;
 		String owner;
-		float balance, limit;
+		float balance, limit, value;
 		
 		while (true) {
 		    System.out.println(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND
@@ -147,14 +147,48 @@ public class Menu {
 		        break;
 		    case 6:
 		        System.out.println(Colors.TEXT_WHITE + "Withdrawal\n\n");
+		        System.out.println("Type the account number: ");
+		        number = sc.nextInt();
+		        
+		        do {
+		        	System.out.println("Type the withdrawal value: ");
+		        	value = sc.nextFloat();
+		        } while(value <= 0);
+		        
+		        account.withdraw(number, value);
+		        
 		        keyPress();
 		        break;
 		    case 7:
 		        System.out.println(Colors.TEXT_WHITE + "Deposit\n\n");
+		        
+		        System.out.println("Type the account number: ");
+		        number = sc.nextInt();
+		        
+		        do {
+		        	System.out.println("Type the deposit value: ");
+		        	value = sc.nextFloat();
+		        } while(value <= 0);
+		        
+		        account.deposit(number, value);
+		        
 		        keyPress();
 		        break;
 		    case 8:
 		        System.out.println(Colors.TEXT_WHITE + "Transfer between accounts\n\n");
+		        
+		        System.out.println("Type the origin account number: ");
+		        number = sc.nextInt();
+		        System.out.println("Type the destiny account number: ");
+		        toNumber = sc.nextInt();
+		        
+		        do {
+		        	System.out.println("Type the deposit value: ");
+		        	value = sc.nextFloat();
+		        } while(value <= 0);
+		        
+		        account.transfer(number, toNumber, value);
+		        
 		        keyPress();
 		        break;
 		    case 9:

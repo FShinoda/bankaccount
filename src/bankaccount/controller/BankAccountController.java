@@ -63,20 +63,44 @@ public class BankAccountController implements BankAccountRepository {
 
 	@Override
 	public void withdraw(int number, float value) {
-		// TODO Auto-generated method stub
+		var acc = searchInCollection(number);
+		
+		if(acc != null) {
+			if(acc.withdraw(value) == true) {
+				System.out.println("\nWithdraw on account number " + number + " was successfuly done.");
+			}
+		} else {
+			System.out.println("\nAccount number " + number + " not found.");			
+		}
 		
 	}
 
 	@Override
 	public void deposit(int number, float value) {
-		// TODO Auto-generated method stub
+		var acc = searchInCollection(number);
+		
+		if(acc != null) {
+			acc.deposit(value);
+			System.out.println("znDeposit on accoun number " + number + " was successfully done.");
+		} else {
+			System.out.println("\nAccount number " + number + " not found.");						
+		}
 		
 	}
 
 	@Override
 	public void transfer(int numberFrom, int numberTo, float value) {
-		// TODO Auto-generated method stub
+		var fromAcc = searchInCollection(numberFrom);
+		var toAcc = searchInCollection(numberTo);
 		
+		if (fromAcc != null && toAcc != null) {
+			if(fromAcc.withdraw(value) == true) {
+				toAcc.deposit(value);
+				System.out.println("\nThe transference was successfully done.");
+			}
+		} else {
+			System.out.println("\nAccount number " + numberFrom + " or " + numberTo + " not found.");									
+		}
 	}
 	
 	public int generateNumber() {
